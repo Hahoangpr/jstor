@@ -1,0 +1,101 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile information",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string" },
+        "username": { "type": "string" },
+        "role": { "type": "string", "enum": ["USER", "ADMIN"] },
+        "avatar": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "email", "username", "role"]
+    },
+    "Game": {
+      "title": "Game",
+      "description": "Game details and metadata",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "price": { "type": "number" },
+        "shortDesc": { "type": "string" },
+        "fullDesc": { "type": "string" },
+        "thumbnail": { "type": "string" },
+        "coverImage": { "type": "string" },
+        "downloadUrl": { "type": "string" },
+        "fileSize": { "type": "string" },
+        "version": { "type": "string" },
+        "minRequirements": { "type": "string" },
+        "platforms": { "type": "string" },
+        "releaseDate": { "type": "string" },
+        "downloadCount": { "type": "number" },
+        "category": { "type": "string" },
+        "isHot": { "type": "boolean" },
+        "rating": { "type": "number" }
+      },
+      "required": ["title", "price", "thumbnail"]
+    },
+    "Rating": {
+      "title": "Rating",
+      "description": "User review and rating for a game",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "username": { "type": "string" },
+        "gameId": { "type": "string" },
+        "score": { "type": "number" },
+        "comment": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "gameId", "score"]
+    },
+    "OwnedGame": {
+      "title": "Owned Game",
+      "description": "Record of a game purchased by a user",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "gameId": { "type": "string" },
+        "purchaseDate": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "gameId"]
+    },
+    "Transaction": {
+      "title": "Transaction",
+      "description": "Payment history record",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "amount": { "type": "number" },
+        "date": { "type": "string", "format": "date-time" },
+        "type": { "type": "string" }
+      },
+      "required": ["userId", "amount", "date"]
+    }
+  },
+  "firestore": {
+    "users": {
+      "schema": "User",
+      "description": "User accounts"
+    },
+    "games": {
+      "schema": "Game",
+      "description": "Games catalog"
+    },
+    "ratings": {
+      "schema": "Rating",
+      "description": "Game reviews"
+    },
+    "ownedGames": {
+      "schema": "OwnedGame",
+      "description": "User libraries"
+    },
+    "transactions": {
+      "schema": "Transaction",
+      "description": "Financial records"
+    }
+  }
+}
